@@ -1,0 +1,92 @@
+{
+	"ImportPath": "github.com/zchee/docker-machine-driver-xhyve",
+	"GoVersion": "devel",
+	"Packages": [
+		"github.com/zchee/docker-machine-driver-xhyve",
+		"github.com/zchee/docker-machine-driver-xhyve/bin",
+		"github.com/zchee/docker-machine-driver-xhyve/vmnet"
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/Azure/go-ansiterm",
+			"Rev": "70b2c90b260171e829f1ebd7c17f600c11858dbe"
+		},
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.8.7-53-g446d1c1",
+			"Rev": "446d1c146faa8ed3f4218f056fcd165f6bcfda81"
+		},
+		{
+			"ImportPath": "github.com/davecgh/go-spew/spew",
+			"Rev": "5215b55f46b2b919f50a1df0eaa5886afe4e3b3d"
+		},
+		{
+			"ImportPath": "github.com/docker/docker/pkg/term",
+			"Comment": "v1.4.1-7111-g48fe12a",
+			"Rev": "48fe12af0c785d62ac852ea8428a9789a4e9d7fd"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/drivers",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/log",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/mcnflag",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/mcnutils",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/ssh",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/state",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/version",
+			"Comment": "v0.5.0-303-g5ccd7f5",
+			"Rev": "5ccd7f57e77e6ca59d1587c6deaad88ef5d32f7c"
+		},
+		{
+			"ImportPath": "github.com/hooklift/xhyve",
+			"Rev": "9622b3100eaeebde930c87c55a2a08e0ade2c3af"
+		},
+		{
+			"ImportPath": "github.com/johanneswuerbach/nfsexports",
+			"Rev": "a9068f3f0daa39616953aec11c3eb1209ebc4086"
+		},
+		{
+			"ImportPath": "github.com/pmezard/go-difflib/difflib",
+			"Rev": "d8ed2627bdf02c080bf22230dbb337003b7aba2d"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Rev": "67106a5111a06241c8d84952c33214675f51a34a"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/curve25519",
+			"Rev": "beef0f4390813b96e8e68fd78570396d0f4751fc"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh",
+			"Rev": "beef0f4390813b96e8e68fd78570396d0f4751fc"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "833a04a10549a95dc34458c195cbad61bbb6cb4d"
+		}
+	]
+}

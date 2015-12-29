@@ -14,59 +14,17 @@ import (
 )
 
 var (
-	//	ErrMachineExist     = errors.New("machine already exists")
-	//	ErrMachineNotExist  = errors.New("machine does not exist")
 	ErrDdNotFound      = errors.New("xhyve not found")
 	ErrUuidgenNotFound = errors.New("uuidgen not found")
-	//	ErrUuid2macNotFound = errors.New("uuid2mac not found")
 	ErrHdiutilNotFound = errors.New("hdiutil not found")
 	ErrVBMNotFound     = errors.New("VBoxManage not found")
 	vboxManageCmd      = setVBoxManageCmd()
 )
 
-func dd(input string, output string, block string, count int) (string, string, error) { // TODO
-	cmd := exec.Command("dd", fmt.Sprintf("if=%s", input), fmt.Sprintf("of=%s", output), fmt.Sprintf("bs=%s", block), fmt.Sprintf("count=%d", count))
-	if os.Getenv("DEBUG") != "" {
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-	}
-
-	var stdout bytes.Buffer
-	var stderr bytes.Buffer
-	cmd.Stdout, cmd.Stderr = &stdout, &stderr
-
-	err := cmd.Run()
-	if err != nil {
-		if ee, ok := err.(*exec.Error); ok && ee == exec.ErrNotFound {
-			err = ErrDdNotFound
-		}
-	}
-
-	fmt.Println(cmd)
-	return stdout.String(), stderr.String(), err
-}
-
-func uuidgen() string {
-	cmd := exec.Command("uuidgen")
-
-	var stdout bytes.Buffer
-	cmd.Stdout = &stdout
-	log.Debugf("executing: %v", cmd)
-
-	err := cmd.Run()
-	if err != nil {
-		if ee, ok := err.(*exec.Error); ok && ee == exec.ErrNotFound {
-			err = ErrUuidgenNotFound
-		}
-	}
-
-	out := stdout.String()
-	out = strings.Replace(out, "\n", "", -1)
-	return out
-}
-
 func hdiutil(args ...string) error {
 	cmd := exec.Command("hdiutil", args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 
 	log.Debugf("executing: %v %v", cmd, strings.Join(args, " "))
 
@@ -81,7 +39,10 @@ func hdiutil(args ...string) error {
 // detect the VBoxManage cmd's path if needed
 func setVBoxManageCmd() string {
 	cmd := "VBoxManage"
-	if path, err := exec.LookPath(cmd); err == nil {
+	path, err := exec.LookPath(cmd)
+	if err != nil {
+		return ""
+	} else if err == nil {
 		return path
 	}
 	if runtime.GOOS == "windows" {
@@ -140,9 +101,16 @@ func vbmOutErr(args ...string) (string, string, error) {
 }
 
 func vboxVersionDetect() (string, error) {
+	if vboxManageCmd == "" {
+		return "", nil
+	}
 	ver, err := vbmOut("-v")
 	if err != nil {
 		return "", err
 	}
 	return ver, err
+}
+
+func toPtr(s string) *string {
+	return &s
 }
